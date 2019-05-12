@@ -3,7 +3,22 @@ package actions
 import components.{Move, State}
 
 object Moving {
-  def getAllPotentialMoves(state: State, player: Int): List[Move] = ??? //
+  // TODO refactor getAllPotentialMoves()
+  def getAllPotentialMoves(state: State, player: Int): List[Move] =
+    state
+      .positions(player)
+      .flatMap(
+        x =>
+          List(
+            Move(x, (x._1 - 1, x._2 - 1)),
+            Move(x, (x._1 - 1, x._2)),
+            Move(x, (x._1 - 1, x._2 + 1)),
+            Move(x, (x._1, x._2 - 1)),
+            Move(x, (x._1, x._2 + 1)),
+            Move(x, (x._1 + 1, x._2 - 1)),
+            Move(x, (x._1 + 1, x._2)),
+            Move(x, (x._1 + 1, x._2 + 1))
+        ))
 
   def getAllValidMoves(state: State, player: Int): List[Move] = ???
 
