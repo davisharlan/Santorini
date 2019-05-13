@@ -1,6 +1,6 @@
 package validation
 
-import components.State
+import components.{Coordinates, State}
 
 object StateValidation {
   def isBoardValid(board: List[List[Int]]): Boolean =
@@ -9,16 +9,16 @@ object StateValidation {
         board.flatten.count(x => x < 0 || x > 4) == 0) true
     else false
 
-  def isPositionsValid(positions: List[List[(Int, Int)]]): Boolean =
+  def isPositionsValid(positions: List[List[Coordinates]]): Boolean =
     if ((positions.flatten.distinct.size == positions.flatten.size) &&
         positions.flatten.count(
-          x => x._1 < 0 || x._1 > 4 || x._2 < 0 || x._2 > 4) == 0) true
+          x => x.row < 0 || x.row > 4 || x.col < 0 || x.col > 4) == 0) true
     else false
 
   def isStateValid(state: State): Boolean =
     if (isBoardValid(state.board) &&
         isPositionsValid(state.positions) &&
-        state.positions.flatten.count(x => state.board(x._1)(x._2) == 4) == 0)
+        state.positions.flatten.count(x => state.board(x.row)(x.col) == 4) == 0)
       true
     else false
 }
