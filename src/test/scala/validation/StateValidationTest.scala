@@ -1,5 +1,6 @@
 package validation
 
+import components.Coordinates
 import org.scalatest.FunSpec
 
 class StateValidationTest extends FunSpec {
@@ -11,7 +12,8 @@ class StateValidationTest extends FunSpec {
                          List(0, 1, 2, 3, 4),
                          List(0, 1, 2, 3, 4),
                          List(0, 1, 2, 3, 4))
-    val mockPositions = List(List((0, 0), (4, 4)), List((0, 4), (4, 0)))
+    val mockPositions = List(List(Coordinates(0, 0), Coordinates(4, 4)),
+                             List(Coordinates(0, 4), Coordinates(4, 0)))
 
     describe("isBoardValid") {
       it("should return true if the board is valid") {
@@ -37,10 +39,12 @@ class StateValidationTest extends FunSpec {
         assert(StateValidation.isPositionsValid(mockPositions))
       }
       it("should return false if the positions overlap") {
-        assert(!StateValidation.isPositionsValid(List((0, 4), (4, 4)) :: mockPositions.drop(1)))
+        assert(!StateValidation.isPositionsValid(
+          List(Coordinates(0, 4), Coordinates(4, 4)) :: mockPositions.drop(1)))
       }
       it("should return false if a position is off the board") {
-        assert(!StateValidation.isPositionsValid(List((0, -1), (4, 4)) :: mockPositions.drop(1)))
+        assert(!StateValidation.isPositionsValid(
+          List(Coordinates(0, -1), Coordinates(4, 4)) :: mockPositions.drop(1)))
       }
     }
 

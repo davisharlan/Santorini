@@ -1,6 +1,6 @@
 package utils
 
-import components.{Move, State}
+import components.{Coordinates, Move, State}
 import org.scalatest.FunSpec
 
 class MoveUtilsTest extends FunSpec {
@@ -13,16 +13,17 @@ class MoveUtilsTest extends FunSpec {
              List(0, 0, 0, 0, 1),
              List(0, 0, 0, 0, 0),
              List(0, 0, 0, 4, 3)),
-        List(List((2, 4), (4, 4)), List((2, 3), (4, 0))),
+        List(List(Coordinates(2, 4), Coordinates(4, 4)),
+             List(Coordinates(2, 3), Coordinates(4, 0))),
         0
       )
 
       val expected = List(
-        Move((2, 4), (1, 4)),
-        Move((2, 4), (3, 3)),
-        Move((2, 4), (3, 4)),
-        Move((4, 4), (3, 3)),
-        Move((4, 4), (3, 4))
+        Move(Coordinates(2, 4), Coordinates(1, 4)),
+        Move(Coordinates(2, 4), Coordinates(3, 3)),
+        Move(Coordinates(2, 4), Coordinates(3, 4)),
+        Move(Coordinates(4, 4), Coordinates(3, 3)),
+        Move(Coordinates(4, 4), Coordinates(3, 4))
       )
       assert(MoveUtils.getAllPotentialMoves(mockState, 0) == expected)
     }
@@ -32,13 +33,15 @@ class MoveUtilsTest extends FunSpec {
     it("should apply a move to the state") {
       val mockState = State(
         List.fill(5)(List.fill(5)(0)),
-        List(List((0, 0), (4, 4)), List((0, 4), (4, 0))),
+        List(List(Coordinates(0, 0), Coordinates(4, 4)),
+             List(Coordinates(0, 4), Coordinates(4, 0))),
         0
       )
-      val mockMove = Move((0, 0), (0, 1))
+      val mockMove = Move(Coordinates(0, 0), Coordinates(0, 1))
       val expected = State(
         List.fill(5)(List.fill(5)(0)),
-        List(List((0, 1), (4, 4)), List((0, 4), (4, 0))),
+        List(List(Coordinates(0, 1), Coordinates(4, 4)),
+             List(Coordinates(0, 4), Coordinates(4, 0))),
         0
       )
       assert(MoveUtils.applyMoveToState(mockState, mockMove) == expected)
