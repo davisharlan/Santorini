@@ -1,5 +1,3 @@
 package components
 
-class Build {
-
-}
+case class Build(positions: (Int, Int), placement: (Int, Int))
