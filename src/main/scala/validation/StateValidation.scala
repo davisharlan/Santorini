@@ -10,9 +10,8 @@ object StateValidation {
     else false
 
   def isPositionsValid(positions: List[List[Coordinates]]): Boolean =
-    if ((positions.flatten.distinct.size == positions.flatten.size) &&
-        positions.flatten.count(
-          x => x.row < 0 || x.row > 4 || x.col < 0 || x.col > 4) == 0) true
+    if (positions.flatten.distinct.size == positions.flatten.size &&
+        positions.flatten.count(!CoordinatesValidation.isCoordinatesValid(_)) == 0) true
     else false
 
   def isStateValid(state: State): Boolean =
