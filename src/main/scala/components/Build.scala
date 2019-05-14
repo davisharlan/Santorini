@@ -1,3 +1,3 @@
 package components
 
-case class Build(positions: (Int, Int), placement: (Int, Int))
+case class Build(positions: Coordinates, placement: Coordinates)

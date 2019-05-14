@@ -1,6 +1,6 @@
 package utils
 
-import components.{Move, State}
+import components.{Coordinates, Move, State}
 import validation.MoveValidation
 
 object MoveUtils {
@@ -10,14 +10,14 @@ object MoveUtils {
       .positions(player)
       .flatMap(x =>
         List(
-          Move(x, (x._1 - 1, x._2 - 1)),
-          Move(x, (x._1 - 1, x._2)),
-          Move(x, (x._1 - 1, x._2 + 1)),
-          Move(x, (x._1, x._2 - 1)),
-          Move(x, (x._1, x._2 + 1)),
-          Move(x, (x._1 + 1, x._2 - 1)),
-          Move(x, (x._1 + 1, x._2)),
-          Move(x, (x._1 + 1, x._2 + 1))
+          Move(x, Coordinates(x.row - 1, x.col - 1)),
+          Move(x, Coordinates(x.row - 1, x.col)),
+          Move(x, Coordinates(x.row - 1, x.col + 1)),
+          Move(x, Coordinates(x.row, x.col - 1)),
+          Move(x, Coordinates(x.row, x.col + 1)),
+          Move(x, Coordinates(x.row + 1, x.col - 1)),
+          Move(x, Coordinates(x.row + 1, x.col)),
+          Move(x, Coordinates(x.row + 1, x.col + 1))
       ))
       .filter(MoveValidation.isMoveValid(state, _))
 
