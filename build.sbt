@@ -4,7 +4,15 @@ version := "0.1"
 
 scalaVersion := "2.12.8"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+val http4sVersion = "0.20.0"
+
+libraryDependencies ++= Seq(
+  "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+
+  "org.http4s" %% "http4s-dsl" % http4sVersion,
+  "org.http4s" %% "http4s-blaze-server" % http4sVersion,
+  "org.http4s" %% "http4s-websocket" % "0.2.1"
+)
 
 scalacOptions ++= Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
