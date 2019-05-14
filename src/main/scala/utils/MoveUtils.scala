@@ -1,13 +1,13 @@
 package utils
 
-import components.{Coordinates, Move, State}
-import validation.MoveValidation
+import components.{Coordinates, Error, Move, State}
+import validation.{MoveValidation, StateValidation}
 
 object MoveUtils {
   // TODO refactor function in the flatMap call
-  def getAllPotentialMoves(state: State, player: Int): List[Move] =
+  def getAllPotentialMoves(state: State): List[Move] =
     state
-      .positions(player)
+      .positions(state.turn)
       .flatMap(x =>
         List(
           Move(x, Coordinates(x.row - 1, x.col - 1)),
@@ -25,4 +25,5 @@ object MoveUtils {
     State(state.board,
           state.positions.map(_.map(x => if (x == move.start) move.end else x)),
           state.turn)
+
 }

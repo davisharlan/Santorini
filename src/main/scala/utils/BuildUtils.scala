@@ -26,6 +26,6 @@ object BuildUtils {
           .updated(build.placement.col,
                    state.board(build.placement.row)(build.placement.col) + 1)),
       state.positions,
-      state.turn
+      state.turn + 1 % 2
     )
 }
