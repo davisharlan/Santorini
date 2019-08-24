@@ -1,7 +1,7 @@
 package utils
 
-import components.{Coordinates, Error, Move, State}
-import validation.{MoveValidation, StateValidation}
+import components.{Coordinates, Move, State}
+import validation.{MoveValidation}
 
 object MoveUtils {
   // TODO refactor function in the flatMap call

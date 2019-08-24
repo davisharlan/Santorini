@@ -4,6 +4,9 @@ version := "0.1"
 
 scalaVersion := "2.12.8"
 
+// set the main class for packaging the main jar
+mainClass in (Compile, run) := Some("server.CLI")
+
 val http4sVersion = "0.20.0"
 
 libraryDependencies ++= Seq(

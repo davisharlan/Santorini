@@ -1,11 +1,16 @@
 package server
 
-class CLI {
+import components.{Build, Move}
+import game.Play
+
+object CLI {
 
   def main(args: Array[String]): Unit = {
-
-    println("Welcome to the Santorini CLI!")
-
+    println(Play.playGame() + "won!")
   }
+
+  def requestMove(): Move = ???
+
+  def requestBuild(): Build = ???
 
 }
